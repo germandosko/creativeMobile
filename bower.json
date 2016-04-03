@@ -1,0 +1,13 @@
+{
+  "name": "CreativeMovile",
+  "description": "App Movile for Creative Company",
+  "dependencies": {
+    "angular": "~1.5.0",
+    "bootstrap": "~3.3.6",
+    "jquery" : "~1.9.0"
+  },
+  "authors": [
+    "German Dosko <german.dosko@gmail.com>"
+  ],
+  "private": true
+}

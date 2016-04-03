@@ -1,0 +1,12 @@
+{
+  "name"         : "CreativeMovile",
+  "version"      : "0.0.1",
+  "description"  : "App Movile for Creative Company",
+  "main"         : "server.js",
+  "author"       : "German Dosko <german.dosko@gmail.com>",
+  "dependencies" : {
+    "express"    : "~3.4.4",
+    "mongoose"   : "~3.6.2",
+    "body-parser"   : "~1.15.0"   
+  }
+}
