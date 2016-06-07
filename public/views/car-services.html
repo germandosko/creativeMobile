@@ -1,0 +1,97 @@
+<button type="button" id="search-button" class="btn btn-success" ng-click="SearchNewCar()">Buscar otro Auto</button>
+<div class="panel panel-primary">
+	<div class="panel-heading">AUTO</div>
+	<div class="panel-body">
+		<table class='table table-hover' id="carTable">
+			<thead>
+				<tr>			
+					<th>Patente</th>
+					<th>Auto</th>
+					<th>Titular</th>
+					<th>Telefono</th>
+					<th>Opciones</th>			
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td class="form-group">
+						<input id="currentId" ng-model="car._id" class="ng-hide"/>
+						<span ng-if="!car.isEditingCar">{{car.patent}}</span>
+						<input ng-if="car.isEditingCar" class="form-control" type="text" ng-model="car.patent" ui-mask="AAA-999" ui-mask-placeholder ui-mask-placeholder-char="_" required/>			
+					</td>
+					<td>
+						<span ng-if="!car.isEditingCar">{{car.car}}</span>
+						<input ng-if="car.isEditingCar" class="form-control" ng-model="car.car" />
+					</td>
+					<td>
+						<span ng-if="!car.isEditingCar">{{car.owner}}</span>
+						<input ng-if="car.isEditingCar" class="form-control" ng-model="car.owner" />
+					</td>
+					<td>
+						<span ng-if="!car.isEditingCar">{{car.phone}}</span>
+						<input ng-if="car.isEditingCar" class="form-control" ng-model="car.phone" ng-keypress="onlyNumber($event)" />
+					</td>
+					<td>
+						<button class="btn btn-warning glyphicon glyphicon-pencil" ng-if="!car.isEditingCar" ng-click="editCar(car)" />
+						<button class="btn btn-danger glyphicon glyphicon-remove" ng-if="!car.isEditingCar" ng-click="deleteCar(car)" title="Eliminar" />
+						<button class="btn btn-success glyphicon glyphicon-pencil" ng-if="car.isEditingCar" ng-click="saveEditCar(car)" />
+						<button class="btn btn-danger glyphicon glyphicon-remove" ng-if="car.isEditingCar" ng-click="cancelEditCar(car)" title="Cancelar" />
+					</td>
+				</tr>
+			</tbody>
+		</table> 
+		<div class="panel panel-info">
+			<div class="panel-heading">SERVICIOS<button class="btn btn-success glyphicon glyphicon-plus pull-right" id="add_service" ng-click="activeService(car.services)"></div>
+			<div class="panel-body">
+				<table class='table table-hover' id="servicesTable">
+					<thead>
+						<tr>			
+							<th class="col-md-1">Fecha</th>
+							<th class="col-md-8">Descripcion</th>
+							<th class="col-md-1">Precio</th>
+							<th class="col-md-3">Opciones</th>			
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-if="isAddingService">
+							<td class="col-md-1">
+								<md-datepicker ng-model="newService.date" md-placeholder="Enter date"></md-datepicker>
+							</td>
+							<td class="col-md-8 vcenter">
+								<input type="text" class="form-control" ng-model="newService.description" class="descService" ng-required="true"/>
+							</td>
+							<td class="col-md-1">
+								<input type="text" class="form-control" ng-model="newService.price" ng-required ng-keypress="onlyNumber($event)"/>
+							</td>
+							<td class="col-md-3">
+								<button class="btn btn-success" ng-click="saveService(car._id, newService)">Guardar</button>
+								<button class="btn btn-danger glyphicon glyphicon-remove" ng-click="editService()" />
+							</td>
+						</tr>
+						<tr id="listServices" ng-repeat='serv in car.services | orderBy: "-date"'>
+							<td lass="col-sm-1">
+								<input id="serviceId" ng-model="serv._id" class="ng-hide"/>
+								<span ng-if="!serv.isEditingServ">{{ serv["date"] | date : "dd-MM-yyyy" }}</span>
+								<md-datepicker ng-if="serv.isEditingServ" ng-model="serv.date" md-placeholder="Enter date"></md-datepicker>
+							</td>
+							<td lass="col-sm-9">
+								<span ng-if="!serv.isEditingServ">{{ serv["description"] }}</span>
+								<input ng-if="serv.isEditingServ" ng-model="serv.description" class="descService form-control"></input>
+							</td>
+							<td lass="col-sm-1">
+								<span ng-if="!serv.isEditingServ">$ {{ serv["price"] }}</span>
+								<input ng-if="serv.isEditingServ" ng-model="serv.price" class="form-control" ng-keypress="onlyNumber($event)"></input>
+							</td>
+							<td lass="col-sm-2">
+								<button class="btn btn-success" title="Guardar" ng-if="serv.isEditingServ" ng-click="updateService(car._id, serv)">Guardar</button>
+								<button class="btn btn-danger glyphicon glyphicon-remove" title="Cancelar" ng-if="serv.isEditingServ" ng-click="cancelEditService(serv)"/>
+								<button class="btn btn-warning glyphicon glyphicon-pencil" title="Modificar" ng-if="!serv.isEditingServ" ng-click="editService(serv, car.services)"/>
+								<button class="btn btn-danger glyphicon glyphicon-remove" ng-if="!serv.isEditingServ" ng-click="deleteService(car._id, serv, $index)" title="Eliminar"/>						
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>	
+</div>	

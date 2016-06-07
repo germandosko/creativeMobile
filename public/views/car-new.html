@@ -1,0 +1,40 @@
+<div class="col-xs-1 col-sm-2 col-md-2 col-lg-2"></div>
+<div class="col-xs-10 col-sm-8 col-md-8 col-lg-8">
+	<div class="panel panel-primary">
+		<div class="panel-heading">Guardar un nuevo auto</div>
+		<div class="panel-body">
+			<form class="form-horizontal" name="newCarForm">
+				<fieldset>
+					<div class="form-group">
+						<label class="col-md-2 control-label">Patente</label>  
+						<div class="col-md-10">
+							<input type="text" placeholder="{{patentMask}}" class="form-control input-md patent-input" ng-model="info.patent" ui-mask="{{patentMask}}" ui-mask-placeholder ui-mask-placeholder-char="_" ng-blur="searchCar()" ng-if="!checked" required>
+							<button type="button" class="btn btn-warning glyphicon glyphicon-refresh" title="Cambiar Tipo de Patente" ng-click="changePatent()"></button>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-2 control-label">Auto</label>  
+						<div class="col-md-10">
+							<input type="text" placeholder="Fiat Palio 2006" class="form-control input-md" ng-model="info.car" required>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-2 control-label">Titular</label>  
+						<div class="col-md-10">
+							<input type="text" placeholder="Nombre y Apellido" class="form-control input-md" ng-model="info.owner" required>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-2 control-label">Telefono</label>  
+						<div class="col-md-10">
+							<input type="text" placeholder="4925689" class="form-control input-md" ng-model="info.phone" ng-keypress="onlyNumber($event)" required>  
+						</div>
+					</div>
+					<button type="submit" class="btn btn-success" ng-click="newCar()" ng-disabled="newCarForm.$invalid">Guardar</button>
+					<button type="submit" class="btn btn-danger" ng-click="cancelNewCarForm()">Cancelar</button>
+			</fieldset>
+			</form>	
+		</div>
+	</div>
+</div>
+<div class="col-xs-1 col-sm-2 col-md-2 col-lg-2"></div>

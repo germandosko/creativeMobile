@@ -1,0 +1,13 @@
+ <div class="panel panel-primary panel-300">
+        <div class="panel-heading">Buscar Auto</div>
+        <div class="panel-body">
+	            <form class="general_form" name="searchCarForm">
+				<input type="text" ng-model="info.patent" ng-if="!checkedSearch" name="fsearch" id="car_input_search" class="form-control" ui-mask="{{patentMask}}" placeholder="{{patentMask}}" ui-mask-placeholder ui-mask-placeholder-char="_" capitalize required />
+				<button type="button" class="btn btn-success" ng-click="searchCar(patent)" ng-disabled="searchCarForm.$invalid">Buscar Auto</button>
+				<button type="button" title="Nuevo Auto" class="btn btn-info glyphicon glyphicon-plus" ng-click="showNewCarForm()"></button>
+				<button type="button" class="btn btn-warning glyphicon glyphicon-refresh" title="Cambiar Tipo de Patente"ng-click="changePatent()"></button>
+			</form>
+			<h4 ng-if="searchNotFound" class="text-danger">No se encontro ningun auto con esa patente</h4>
+        </div>
+    </div>
+ </div>
